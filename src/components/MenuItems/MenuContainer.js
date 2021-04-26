@@ -9,6 +9,13 @@ function MenuContainer() {
     const handleMultiPlayer = () => history.push('/GamePage');
 
     const handlePlayWithAI = ()=>{
+        NewGame()
+            .then(res=>{
+                    console.log(res);
+            }).catch(err=>{
+                    console.log(err);
+            })
+            
         setPlayWithAI(true)
         history.push('/GamePage')
     }

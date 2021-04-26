@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Slot from "../../GameItems/Board/Slot";
 import { GameWrapper } from "../../../context/Game/GameContext";
-import {MenuWrapper  } from "../../../context/Menu/MenuContext";
+import { MenuWrapper  } from "../../../context/Menu/MenuContext";
 import "./Board.scss";
+import { NewGame,test } from "../../../api/game";
 
 
 function Grid() {
@@ -40,15 +41,22 @@ function Grid() {
     }
 
     function checkWinner(bs) {
+        // vertical
         for (let c = 0; c < 7; c++)
-            for (let r = 0; r < 4; r++)
+            for (let r = 0; r < 3; r++){
+              
                 if (checkLine(bs[c][r], bs[c][r + 1], bs[c][r + 2], bs[c][r + 3]))
-                    return bs[c][r] + ' wins!'
-
+                     return bs[c][r] + ' wins!'
+            }
+               
+        // Horizantal
         for (let r = 0; r < 6; r++)
-            for (let c = 0; c < 4; c++)
+            for (let c = 0; c < 4; c++){
+                console.log( bs[c][r], bs[c + 1][r], bs[c + 2][r], bs[c + 3][r]) 
                 if (checkLine(bs[c][r], bs[c + 1][r], bs[c + 2][r], bs[c + 3][r]))
-                    return bs[c][r] + ' wins!'
+                return bs[c][r] + ' wins!'
+            }
+               
 
         for (let r = 0; r < 3; r++)
             for (let c = 0; c < 4; c++)

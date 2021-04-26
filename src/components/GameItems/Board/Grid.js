@@ -25,9 +25,6 @@ function Grid() {
       setPlayerTurn(turn === 'red' ? 'blue' : 'red');
       newSlot.reverse();
 
-      const newBord = boardCopy[0].map((_, colIndex) => boardCopy.map(row => row[colIndex]));
-      test(JSON.stringify(newBord)).then(result => console.log(result));
-
       setArray(boardCopy);
     }
   };
@@ -87,6 +84,8 @@ function Grid() {
 
   useEffect(() => {
     console.log(playWithAI);
+      const newBord = array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+      test(JSON.stringify(newBord)).then(result => console.log(result));
     // AI Make Move
     // AI color is Blue
     if (checkWinner(array)) {

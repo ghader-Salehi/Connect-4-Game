@@ -1,0 +1,41 @@
+.grid{
+    background-color: rgb(217, 255, 0);
+    padding: 30px;
+    display: flex;
+    margin-top: 3rem;
+    border-radius: 20px;
+}
+.hole{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: rgb(226, 225, 225);
+    margin: 10px;
+    div{
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        top: -400px;
+        transition: transform 0.5s;
+    }
+
+}
+
+
+
+
+.slot_hovered{
+    background-color: rgb(175, 194, 236);
+    border-radius: 50px;
+}
+
+.blue{
+    background-color: rgb(51, 41, 199);
+    transform: translateY(400px);
+}
+
+.red{
+    background-color: red;
+    transform: translateY(400px);
+}

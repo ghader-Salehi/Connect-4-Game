@@ -1,18 +1,23 @@
-import React from 'react'
+import React ,{useContext,useEffect}from 'react'
 import MenuButtons from "./MenuButtons";
 import { useHistory } from "react-router-dom";
+import { MenuWrapper } from "../../context/Menu/MenuContext";
 function MenuContainer() {
-
+    const [playWithAI,setPlayWithAI]  = useContext(MenuWrapper);
     const history = useHistory()
 
-    const GoToGame = () => history.push('/GamePage');
-    const playWithAI = ()=> {
-        // save that game is with AI
+    const handleMultiPlayer = () => history.push('/GamePage');
+
+    const handlePlayWithAI = ()=>{
+        setPlayWithAI(true)
+        history.push('/GamePage')
     }
     const CreateRoom  = () => {
 
     }
-
+    useEffect(()=>{
+        setPlayWithAI(false)
+    },[])
     
     return (
         <div className='d-flex flex-column align-items-center pb-5'>
@@ -22,14 +27,16 @@ function MenuContainer() {
             width={'200px'} 
             radius = {'40px'} 
             color='primary'
-            event={GoToGame}
+            event={handleMultiPlayer}
             />
 
             <MenuButtons   
             text='Play with AI' 
             width={'200px'} 
             radius = {'40px'} 
-            color='primary'/>
+            color='primary'
+            event={handlePlayWithAI}
+            />
 
 
             <MenuButtons  

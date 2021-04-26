@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Slot from "../../GameItems/Board/Slot";
 import { GameWrapper } from "../../../context/Game/GameContext";
+import {MenuWrapper  } from "../../../context/Menu/MenuContext";
 import "./Board.scss";
 
 
@@ -8,7 +9,9 @@ function Grid() {
 
     const [array, setArray] = useState(new Array(7).fill(new Array(6).fill(null)));
     const [turn, setTurn] = useState('red');
-    const [playerTurn, setPlayerTurn] = useContext(GameWrapper)
+    const [playerTurn, setPlayerTurn] = useContext(GameWrapper);
+
+    const [playWithAI,setPlayWithAI]  = useContext(MenuWrapper);
 
     const Move = (columnId) => {
         const boardCopy = array.map(function (arr) {
@@ -69,6 +72,9 @@ function Grid() {
 
 
     useEffect(() => {
+        console.log(playWithAI);
+        // AI Make Move
+        // AI color is Blue
        if(checkWinner(array)){
            alert(checkWinner(array));
            ResetGame();

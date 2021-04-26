@@ -2,6 +2,8 @@ import React ,{useContext,useEffect}from 'react'
 import MenuButtons from "./MenuButtons";
 import { useHistory } from "react-router-dom";
 import { MenuWrapper } from "../../context/Menu/MenuContext";
+import {NewGame} from './../../api/game';
+
 function MenuContainer() {
     const [playWithAI,setPlayWithAI]  = useContext(MenuWrapper);
     const history = useHistory()

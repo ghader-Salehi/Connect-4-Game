@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const NewGame = async () => {
   return await axios.post('/new-game', {
-      person: 'blue',
-      computer: 'red'
+      person: 'red',
+      computer: 'blue'
   });
 };
 

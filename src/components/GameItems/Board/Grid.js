@@ -84,10 +84,16 @@ function Grid() {
 
   useEffect(() => {
     console.log(playWithAI);
-      const newBord = array[0].map((_, colIndex) => array.map(row => row[colIndex]));
-      test(JSON.stringify(newBord)).then(result => console.log(result));
     // AI Make Move
     // AI color is Blue
+    if(playWithAI && turn === 'blue'){
+        const newBord = array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+        test(JSON.stringify(newBord))
+            .then(res=>{
+                Move(res.data.column)
+            });
+    }
+
     if (checkWinner(array)) {
       alert(checkWinner(array));
       ResetGame();

@@ -82,7 +82,7 @@ public class FourInARowAI {
 
     private int minimax(ArrayList<ArrayList<String>> board, int depth, boolean isMaximizerPlayer, int alpha, int beta) {
         int result;
-        if (depth == DIFFICULTY)
+        if (depth == DIFFICULTY || getScore(board, goodSide, badSide) != 0)
             return getScore(board, goodSide, badSide);
 
         if (isMaximizerPlayer) {

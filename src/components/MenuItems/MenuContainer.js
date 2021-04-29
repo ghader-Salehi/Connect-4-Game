@@ -63,7 +63,10 @@ function MenuContainer() {
     }
 
 
-    const handleMultiPlayer = () => history.push('/GamePage');
+    const handleMultiPlayer = () =>{
+        localStorage.setItem('playWithAI' , false);
+        history.push('/GamePage');
+    } 
 
     const handlePlayWithAI = (level) => {
         let obj = {
@@ -74,6 +77,7 @@ function MenuContainer() {
             .then(res => {
                 console.log(res);
                 setPlayWithAI(true)
+                localStorage.setItem('playWithAI' , true)
                 history.push('/GamePage')
             }).catch(err => {
                 console.log(err);

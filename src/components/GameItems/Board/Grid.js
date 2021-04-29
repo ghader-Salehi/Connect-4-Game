@@ -88,7 +88,7 @@ function Grid() {
     // AI Make Move
     // AI color is Blue
     if(playWithAI && turn === 'blue'){
-        const newBord = array[0].map((_, colIndex) => boardCopy.map(row => row[colIndex]));
+        const newBord = array[0].map((_, colIndex) => array.map(row => row[colIndex]));
         test(JSON.stringify(newBord))
             .then(res=>{
                 Move(res.data.column)

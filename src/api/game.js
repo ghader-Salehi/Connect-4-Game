@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export const NewGame = async () => {
+export const NewGame = async ({level}) => {
   return await axios.post('/new-game', {
       person: 'red',
-      computer: 'blue'
+      computer: 'blue',
+      level : level
   });
 };
 

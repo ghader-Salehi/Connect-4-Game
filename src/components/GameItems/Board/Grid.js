@@ -96,7 +96,9 @@ function Grid() {
     }
 
     if (checkWinner(array)) {
-      alert(checkWinner(array));
+      setTimeout(() => {
+        alert(checkWinner(array));
+      }, '200');
       ResetGame();
     }
   });

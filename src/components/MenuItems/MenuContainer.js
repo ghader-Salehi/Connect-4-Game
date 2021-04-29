@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
+import { btn_font} from "./MenuItems.module.scss";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -26,32 +29,47 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         flexDirection: 'column'
     },
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
 }));
 
 function MenuContainer() {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const [openDifficultyModal, setOpenDifficultyModal] = useState(false);
+    const [openRoomModal, setOpenRoomModal] = useState(false);
     const [playWithAI, setPlayWithAI] = useContext(MenuWrapper);
 
 
     const history = useHistory()
 
-    const handleOpen = () => {
-        setOpen(true);
+    const handleOpenDifficultyModal = () => {
+        setOpenDifficultyModal(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleCloseDifficultyModal = () => {
+        setOpenDifficultyModal(false);
     };
+
+
+    const handleOpenRoomModal = () => {
+        setOpenRoomModal(true)
+    }
+    const handleCloseRoomModal = () => {
+        setOpenRoomModal(false)
+    }
 
 
     const handleMultiPlayer = () => history.push('/GamePage');
 
     const handlePlayWithAI = (level) => {
         let obj = {
-            level : level
+            level: level
         }
-        
+
         NewGame(obj)
             .then(res => {
                 console.log(res);
@@ -64,7 +82,7 @@ function MenuContainer() {
 
     }
     const CreateRoom = () => {
-
+        handleOpenRoomModal()
     }
     useEffect(() => {
         setPlayWithAI(false)
@@ -86,7 +104,7 @@ function MenuContainer() {
                 width={'200px'}
                 radius={'40px'}
                 color='primary'
-                event={()=>handleOpen()}
+                event={() => handleOpenDifficultyModal()}
             />
 
 
@@ -94,51 +112,83 @@ function MenuContainer() {
                 text='Make a Room'
                 width={'200px'}
                 radius={'40px'}
-                color='primary' 
-                event={()=>CreateRoom()}
-                />
+                color='primary'
+                event={() => CreateRoom()}
+            />
 
             <MenuButtons
                 text='Seeting'
                 width={'200px'}
                 radius={'40px'}
-                color='primary' />
+                color='primary'
+                event={() => { }}
+            />
 
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
-                open={open}
-                onClose={handleClose}
+                open={openDifficultyModal}
+                onClose={handleCloseDifficultyModal}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={openDifficultyModal}>
                     <div className={classes.paper}>
                         <MenuButtons
                             text='Hard'
                             width={'150px'}
                             radius={'20px'}
                             color='primary'
-                            event = {()=>handlePlayWithAI('Hard')}
+                            event={() => handlePlayWithAI('Hard')}
                         />
                         <MenuButtons
                             text='Normal'
                             width={'150px'}
                             radius={'20px'}
                             color='primary'
-                            event = {()=>handlePlayWithAI('normal')}
+                            event={() => handlePlayWithAI('normal')}
                         />
-                         <MenuButtons
+                        <MenuButtons
                             text='Easy'
                             width={'150px'}
                             radius={'20px'}
                             color='primary'
-                            event = {()=>handlePlayWithAI('easy')}
+                            event={() => handlePlayWithAI('easy')}
                         />
+
+                    </div>
+                </Fade>
+            </Modal>
+
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={openRoomModal}
+                onClose={handleCloseRoomModal}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={openRoomModal}>
+                    <div className={classes.paper}>
+                        <TextField  
+                        id="standard-basic" label="Invite Link" 
+                        value={'link'} />
+
+                        
+                        <Button className='mt-4' >
+                            <span className={btn_font + "  text-primary"} >
+                                Let's Go
+                            </span>
+
+                        </Button>
 
                     </div>
                 </Fade>
